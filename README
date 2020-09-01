@@ -23,3 +23,6 @@ Running
 $ gcc -o HelloWorld HelloWorld.c
 
 compiles HelloWorld.c into the executable HelloWorld
+
+Adding some useful flags:
+$ gcc -g -Wall -pedantic -o HelloWorld.out HelloWorld.c ../otherDir/otherSource.c
