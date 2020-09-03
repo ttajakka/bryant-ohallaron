@@ -3,10 +3,57 @@
  * */
 
 #include <stdio.h>
-#include "bytes.h"
+#include "../../bytes/bytes.h"
 
 int main() {
+       
+
+    /* First "Aside" on page 59 
+     * Doesn't seem to work the way the book showed
+     */
+    /*
+    int lval = 0xFEDCBA98 << 32;
+    int aval = 0xFEDCBA98 >> 36;
+    unsigned uval = 0xFEDCBA98u >> 40;
+    printf("%x, %x, %x\n", lval, aval, uval);
+    */
+    
+
+    /* Playing aroung with shifts
+     * Observation: char is signed and takes values
+     * between -127 and 127 (?), so 0x95 overflows.
+     * Cast it to (signed char) to prevent overflow.
+     *
+     * There's something weird about the type casting
+     * of the shift operators... It seems to force
+     * them into ints, I don't know how to keep the
+     * chars.
+     *
+     * EDIT: I don't think it's in the shifts but in
+     * printf. In an earlier version, the line
+     *     printf("y: %u\n$, y)
+     * printed 4294967189, so apparently it first cast
+     * y into a 32-bit signed integer and then converted
+     * to unsigned.
+     */
+    unsigned char x = 0x63u; char y = (signed char) 0x95;
+    printf("x: %i\n", x);
+    show_char_bits(x);
+    unsigned char z = (unsigned char) y;
+    printf("y: %u\n", z);
+    show_char_bits(y);
+    printf("\nshifts:\n");
+    printf("x >> 1: ");
+    show_char_bits(x >> 1);
+    printf("x >> 3: ");
+    show_char_bits(x >> 3);
+    printf("y >> 3: ");
+    show_char_bits(y >> 3);
+}
+
+void nothing() {
     /* Solution to Problem 2.16 */
+     
     unsigned char x = 0xC3;
     printf("x = %x, ", x);
     show_char_bits(x); /* should print 11000011 */
@@ -62,36 +109,5 @@ int main() {
     printf("arithmetic x >> 2 = %x, ", z); /* 19 */
     show_char_bits(z); /* 00011001 */
     printf("\n");
-
-    /* First "Aside" on page 59 
-     * Doesn't seem to work the way the book showed
-     *
-    int lval = 0xFEDCBA98 << 32;
-    int aval = 0xFEDCBA98 >> 36;
-    unsigned uval = 0xFEDCBA98u >> 40;
-    printf("%x, %x, %x\n", lval, aval, uval);
-    */
-
-    /* Playing aroung with shifts
-     * Observation: char is signed and takes values
-     * between -127 and 127 (?), so 0x95 overflows.
-     * Cast it to (signed char) to prevent overflow.
-     *
-     * There's something weird about the type casting
-     * of the shift operators... It seems to force
-     * them into ints, I don't know how to keep the
-     * chars.
-     *
-    unsigned char x = (unsigned char) 0x63; char y = (signed char) 0x95;
-    printf("x: %i\n", x);
-    show_char_bits(x);
-    printf("y: %u\n", y);
-    show_char_bits(y);
-    printf("\nshifts:\n");
-    printf("x >> 1: ");
-    show_char_bits(x >> 1);
-    printf("x >> 3: ");
-    show_char_bits(x >> 3);
-    printf("y >> 3: ");
-    show_char_bits(y >> 3); */
+ 
 }
