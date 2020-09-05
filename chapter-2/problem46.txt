@@ -1,0 +1,27 @@
+Solution to problem 2.46
+
+           x = 0.00011001100110011001100_2
+
+        1/10 = 0.000[1100]_2
+
+    1/10 - x = 0.00000000000000000000000[1100]
+             ~= 2^(-23)*(3/4 + 2^(-4)*3/4)
+             ~= 9.4995 * 10^(-8)
+
+The system makes an error of 
+    
+    9.4995 * 10^(-8) seconds
+    
+seconds every 0.1 seconds. If the system has run 100 hours, that is 
+    
+    100*60*60*10 = 36*10^5 = 3.6*10^6
+
+1/10 seconds. In that time, the total error is around
+
+    9.4995 * 10^(-8) * 3.6 * 10^6 = 0.342 seconds 
+
+If the missile is moving 2000 meters per second, it moves 
+
+    0.342 s * 2000 m/2 = 684 m
+
+within the error in the time.
