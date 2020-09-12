@@ -1,0 +1,17 @@
+Problem 3.18 from page 216
+
+A.
+
+T_OK = 16
+T_avg = 31
+
+    T_avg = T_OK + 0.5 T_MP
+
+=>  T_MP = 2*(T_avg - T_OK)
+         = 2*(31 - 16)
+         = 30
+
+
+B.
+
+T_OK + T_MP = 16 + 30 = 46.

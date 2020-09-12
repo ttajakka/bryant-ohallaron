@@ -1,0 +1,14 @@
+
+    long scale2(long x, long y, long z)
+    x in %rdi, y in %rsi, z in %rdx
+scale2:
+    leaq    (%rdi,%rdi,4), %rax     // %rax contains 5x
+    leaq    (%rax,%rsi,2), %rax     // %rax contains 5x + 2y
+    leaq    (%rax,%rdx,8), %rax     // %rax contains 5x + 2y + 8z
+
+The C code looks like:
+
+long scale2(long x, long y, long z) {
+    long t = 5x + 2y + 8z;
+    return t;
+}

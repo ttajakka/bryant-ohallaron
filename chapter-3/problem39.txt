@@ -1,0 +1,20 @@
+Problem 3.39 from page 262
+
+Equation 3.1 says that if T is a data type with size L, and
+the two-dimensional array D is initialized as
+
+    T D[R][C]
+
+and x_D points to the beginning of D, then
+
+    &D[i][j] = x_D + L(C*i + j)
+
+In the problem, we have
+
+    int A[N][N], B[N][N]
+
+with N = 16, so
+
+    &A[i][0] = x_A + 4(16i + 0) = x_A + 64i
+    &B[0][k] = x_B + 4(16*0 + k) = x_b + 4k
+    &B[N][k] = x_B + 4(16*16 + k) = x_B + 4k + 1024

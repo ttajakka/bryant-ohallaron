@@ -1,0 +1,20 @@
+Problem 3.32 from page 244
+
+---------------------------------------------------------------------------------------------------
+        Instruction                     State values (at beginning)
+---------------------------     ---------------------------------------------   
+Label   PC      Instruction     %rdi    %rsi    %rax        %rsp        *%rsp       Description
+---------------------------------------------------------------------------------------------------
+M1      400560  callq           10      ---     ---     0x7fffffffe820  -------     Call first(10)
+
+F1      400548  lea             10      ---     ---     0x7fffffffe818  0x400565    Entry to first
+F2      40054c  sub             10      11      ---     0x7fffffffe818  0x400565    Arithmetic
+F3      400550  callq           9       11      ---     0x7fffffffe818  0x400565    Call last(x-1,x+1)    
+
+L1      400540  mov             9       11      ---     0x7fffffffe810  0x400555    Entry to last
+L2      400543  imul            9       11      9       0x7fffffffe810  0x400555    Arithmetic
+L3      400547  retq            9       11      99      0x7fffffffe810  0x400555    Return 99 to first
+
+F4      400555  rep; ret        9       11      99      0x7fffffffe818  0x400565    Return 99 to main
+
+M2      400565  mov             9       11      99      0x7fffffffe820  ????????    Resume main

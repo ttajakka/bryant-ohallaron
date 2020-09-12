@@ -1,0 +1,69 @@
+Consider the C code
+
+int comp(data_t a, data_t b) {
+    return a COMP b;
+}
+
+where data_t is defined via typedef and COMP via #define.
+
+Part A
+------
+
+To generate the assembly code
+
+cmpl    %esi, %edi
+setl    %al
+
+from the above C code, we could have
+
+data_t      COMP
+----------------
+int         <
+
+
+Part B
+------
+
+To generate
+
+cmpw    %si, %di
+setge   %al
+
+we could have
+
+data_t      COMP
+----------------
+short       >=
+
+
+PART C
+------
+
+To generate
+
+cmpb    %sil, %dil
+setbe   %al
+
+we could have
+
+data_t      COMP
+----------------
+char        <=
+
+
+PART D
+------
+
+To generate
+
+cmpq    %rsi, %rdi
+setne   %a
+
+we could have
+
+data_t          COMP
+--------------------
+long            !=
+unsigned long
+any pointer     
+

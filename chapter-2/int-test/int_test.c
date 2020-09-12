@@ -4,6 +4,11 @@
 #include "../../bytes/bytes.h"
 
 int main() {
+    // Find out if char is signed or unsigned
+    char c = 0xff;
+    printf("(char) c = %i\n", (int) c);
+    printf("(unsigned char) c = %i\n", (int) (unsigned char) c);
+
     /* page 70 */
     /* short int v = -12345;
     unsigned short uv = (unsigned short) v;
@@ -21,7 +26,7 @@ int main() {
     printf("u = %u = %d\n", t, t);*/
     
     /* page 77-78 */
-    short sx = -12345;
+    /* short sx = -12345;
     unsigned short usx = sx;
     int x = sx;
     unsigned ux = usx;
@@ -33,14 +38,14 @@ int main() {
     printf("x   = %d:\t", x);
     show_int(x);
     printf("ux  = %u:\t", ux);
-    show_int(ux);
+    show_int(ux); */
 
     /* page 80 */
-    printf("\n");
+    /* printf("\n");
     short sy = -12345;
     unsigned uy = sy;
     printf("uy  = %u:\t", uy);
-    show_int(uy);
+    show_int(uy); */
     
     /* bottom of page 68 */
     /*

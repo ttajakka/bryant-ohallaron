@@ -1,0 +1,23 @@
+src_t           dest_t          Instruction             Comments
+---------------------------------------------------------------------
+long            long            movq (%rdi), %rax
+                                movq %rax, (%rsi)
+
+char            int             movsbl (%rdi), %eax     char is signed!
+                                movl %eax, (%rsi)
+
+char            unsigned        movsbl (%rdi), %eax     char is unsigned,
+                                movl %eax, (%rsi)       and size change 
+                                                        happens first
+
+unsigned char   long            movzbl (%rdi), %eax     %eax -> %rax extends
+                                movq %rax, (%rsi)       by zero!
+
+int             char            movl (%rdi), %eax
+                                movb %al, (%rsi)
+
+unsigned        unsigned char   movl (%rdi), %eax
+                                movb %al, (%rsi)
+
+char            short           movsbw (%rdi), %ax
+                                movw %ax, (%rsi)

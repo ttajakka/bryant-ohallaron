@@ -1,0 +1,10 @@
+Each of the following lines of code generates an error message
+when we invoke the assembler. Here's why.
+
+movb $0xF, (%ebx)       %ebx cannot contain a memory address
+movl %rax, (%rsb)       %rax contains a quad word, not a double word like movl is expecting
+movw (%rax), 4(%rsp)    cannot have both operands refer to memory locations
+movb %al, %sl           %sl is not the name of any register
+movq %rax, $0x123       destination cannot be immediate
+movl %eax,%rdx          %rdx is a quad word register, not a long word register like movl expects
+movb %si, 8(%rbp)       %si is a word register, not a byte register like movb expects

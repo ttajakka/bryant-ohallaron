@@ -1,0 +1,70 @@
+Problem 3.14 from page 205
+
+Consider the C code
+
+int test(data_t a) {
+    return a TEST 0;
+}
+
+where data_t is defined via typedef and COMP via #define.
+
+Part A
+------
+
+To generate the assembly code
+
+testq   %rdi, %rdi
+setge   %al
+
+from the above C code, we could have
+
+data_t          TEST
+--------------------
+long            >=
+
+
+Part B
+------
+
+To generate
+
+testw   %di, %di
+sete    %al
+
+we could have
+
+data_t              COMP
+------------------------
+short               ==
+unsigned short
+
+
+PART C
+------
+
+To generate
+
+testb   %dil, %dil
+seta    %al
+
+we could have
+
+data_t          COMP
+--------------------
+unsigned char    >
+
+
+PART D
+------
+
+To generate
+
+testl   %edi, %edi
+setle   %al
+
+we could have
+
+data_t          COMP
+--------------------
+int             <=
+

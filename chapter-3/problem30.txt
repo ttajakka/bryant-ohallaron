@@ -1,0 +1,39 @@
+Problem 3.30 from page 326
+
+A piece of C code with form
+
+void switch2(long x, long *dest) {
+    long val = 0;
+    switch(x) {
+        .
+        .
+        .
+    }
+    *dest = val;
+}
+
+generates the assembly code
+
+x in %rdi
+switch2:
+    addq    $1, %rdi            add 1 to x
+    cmpq    $8, %rdi            
+    ja      .L2                 if x+1 > 8 go to default 
+    jmp     *.L4(,%rdi,8)
+
+with code for jump table
+
+.L4:                        index       label
+    .quad   .L9             0           -1
+    .quad   .L5             1           0
+    .quad   .L6             2           1
+    .quad   .L7             3           2
+    .quad   .L2             4           default
+    .quad   .L7             5           4
+    .quad   .L8             6           5
+    .quad   .L2             7           default
+    .quad   .L5             8           7
+
+A. Values of the case label x are -1, 0, 1, 2, 4, 5, 7
+B. The labels x = 0,7 point to .L5
+              x = 2,4 point to .L7
