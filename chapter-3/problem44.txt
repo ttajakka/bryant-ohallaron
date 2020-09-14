@@ -1,0 +1,31 @@
+Problem 3.44 from page 275
+
+A.    struct P1 { int i; char c; int j; char d; };
+0   4   8   12
+i---c***i---c***       
+total size 16 bytes, P1* must be a multiple of 4, 3 byte padding
+
+
+B.    struct P2 { int i; char c; char d; long j; };
+0   45  8   12
+i---cd**j-------
+total size 16 bytes, P2* must be a multiple of 8, no padding
+
+
+C.    struct P3 { short w[3]; char c[3] };
+0   4  8
+w-----c--*
+total size 10 bytes, P3* multiple of 2, 1 byte padding
+
+
+D.    struct P4 { short w[5]; char *c[3] };
+0       8       16      24      32
+w---------******c-----------------------
+total size 40 bytes, P4* multiple of 8, no padding
+
+
+E.    struct P5 { struct P3 a[2]; struct P2 t };
+0   4   8   12  16  20  24  28  32
+a-----------------------t---------------
+w-----c--*w-----c--*****i---cd**j-------
+total size 40 bytes, P5* multiple of 8, no padding
