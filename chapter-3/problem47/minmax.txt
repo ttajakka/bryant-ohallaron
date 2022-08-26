@@ -1,0 +1,4 @@
+max: 0x7ffffffed410
+min: 0x7ffc000df360
+range: 17178878128
+

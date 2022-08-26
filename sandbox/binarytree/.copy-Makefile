@@ -1,0 +1,27 @@
+IDIR = include
+SDIR = src
+ODIR = obj
+
+CC=gcc
+CFLAGS = -g -Wall -pedantic -I$(IDIR)
+
+_OBJ = binarytree.o addrbintree.o main.o
+OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
+
+
+TARGET = binarytree
+DEPS = $(IDIR)/binarytree.h $(IDIR)/addrbintree.h
+
+$(TARGET): $(OBJ)
+	$(CC) $(CFLAGS) -o $(TARGET) $^
+
+$(ODIR)/%.o: src/%.c $(DEPS)
+	$(CC) $(CFLAGS) -c -o $@ $<
+
+.PHONY: clean cleanall
+
+clean:
+	rm $(ODIR)/*.o
+
+cleanall:
+	rm $(ODIR)/*.o $(TARGET)

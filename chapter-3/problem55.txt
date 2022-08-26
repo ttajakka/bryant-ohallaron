@@ -1,0 +1,23 @@
+Problem 3.55 from page 305
+
+.LC3:
+    .long   0
+    .long   1077936128
+
+1077936128 = 0x40400000
+
+so we are looking at the double with bit representation
+
+0x4040000000000000.
+
+The sign bit is the first bit, which is 0.
+
+The exponent field is the bits 2 through 12 of 0x4040, that is
+
+    10000000100
+
+so the exponent is 1024 + 4 - 1023 = 5.
+
+The fraction field is all zeros, so the significand is 1.0.
+
+Thus, the number encoded is (-1)^0 * 1.0 * 2^5 = 32.

@@ -2,7 +2,7 @@
 
 #include <stdio.h>
 
-/* Interchanges to integers without creating a temporary third integer */
+/* Interchanges two integers without creating a temporary third integer */
 void inplace_swap(int *x, int *y) {
     *y = *x ^ *y;
     *x = *x ^ *y;

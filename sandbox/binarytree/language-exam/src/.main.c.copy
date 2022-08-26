@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include "../include/binarytree.h"
+//#include "../include/addrbintree.h"
 
 void printlin(node_t* n) {
     if (!n)  return;
@@ -11,6 +12,14 @@ void printlin(node_t* n) {
     printlin(n->right);
     return;
 }
+
+/*void printlinaddr(addrnode_t* n) {
+    if (!n)  return;
+    printf("%d -- ", n->value);
+    printlinaddr(n->left);
+    printlinaddr(n->right);
+    return;
+}*/
 
 void printdepths(node_t* n) {
     if (!n)  return;
@@ -33,10 +42,15 @@ int main() {
         insert_value(root, r);
     }
 
+    //addrnode_t* addrroot = binTree2AddrBinTree(root);
 
     printlin(root);
     printf("\n\n");
+    //printlinaddr(addrroot);
     //printf("\n\n");
+
+    //deleteAddrChildren(addrroot);
+    //free(addrroot);
 
     delete_children(root);
     free(root);

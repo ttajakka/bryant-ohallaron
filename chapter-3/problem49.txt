@@ -1,0 +1,37 @@
+Problem 3.49 from page 293
+
+A.  leaq    22(,%rdi,8), %rax       computes the number 8n + 22 to %rax
+    andq    $-16, %rax              rounds %rax down to nearest multiple of 16
+    subq    %rax, %rsp              moves stack pointer down by %rax
+
+    If n = 2k is even, then 8n + 22 = 16k + 16 + 6
+    gets rounded to 16k + 16 = 8n + 16, 
+    so we allocate 16 extra bytes.
+
+    If n = 2k+1 is odd, then 8n + 22 = 16k + 16 + 14
+    gets rounded to 16k + 16 = 8n + 8,
+    so we allocate 8 extra bytes.
+
+
+B.  leaq    7(%rsp), %rax       computes %rsp + 7 to %rax
+    shrq    $3, %rax            divides %rax by 8
+    leaq    0(,%rax,8), %r8     multiplies %rax by 8 and saves to %r8
+
+    This rounds up %r8 to the nearest multiple of 8 at least
+    as large as %rsp.
+
+C.  
+
+    n   s_1     s_2     p   e_1   e_2
+    ---------------------------------------
+    5  2065    2017   2024   1     7
+    6  2064    2000   2000   16     0
+
+
+
+    5*8 + 22 = 62 rounds to 48
+    6*8 + 22 = 70 rounds to 64
+
+
+D.  The alignment of s_2 is the same as that of s_1, p is a multiple of 8.
+

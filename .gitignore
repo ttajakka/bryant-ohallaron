@@ -1,2 +1,11 @@
-# ignore C output files ending in .out
+# Object files
+*.o
+
+# Libraries
+*.a
+
+# Shared objects
+*.so
+
+# Executables
 *.out
