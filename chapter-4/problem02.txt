@@ -1,0 +1,35 @@
+Problem 4.2 from page 388
+
+A. 0x100: 30 f3 fc ff ff ff ff ff ff ff 40 63 00 08 00 00 00 00 00 00
+
+irmovq $-4,%rbx
+rmmovq %rsi,0x800(%rbx)
+
+B. 0x200: a0 6f 80 0c 02 00 00 00 00 00 00 00 30 f3 0a 00 00 00 00 00 00 00
+
+    0x200: pushq %rsi      | a0 6f 
+    0x202: call proc       | 80 0c 02 00 00 00 00 00 00 
+    0x20b: halt            | 00 
+proc:
+    0x20c: irmovq $10,%rbx | 30 f3 0a 00 00 00 00 00 00 00
+    0x216: ret             | 90 ???
+
+C. 0x300: 50 54 07 00 00 00 00 00 00 00 10 f0 b0 1f
+
+0x300: 50 54 07 00 00 00 00 00 00 00 | mrmovq 0x7(%rsp),%rbp
+0x30a: 10                            | nop
+0x30b: f0                            | invalid
+0x30c: b0 1f                         | popq %rcx
+
+D. 0x400: 61 13 73 00 04 00 00 00 00 00 00 00
+
+                                  | loop:
+0x400: 61 13                      |   subq %rcx,%rbx
+0x402: 73 00 04 00 00 00 00 00 00 |   je loop
+0x40b: 00                         | halt
+
+E. 0x500: 63 62 a0 f0
+
+0x500: 63 62 | xorq %rsi,%rdx
+0x502: a0    | pushrq
+0x503: f0    | invalid code: pushrq should be followed by a register 

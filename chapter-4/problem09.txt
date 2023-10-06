@@ -1,0 +1,9 @@
+Problem 4.9 from pgae 402
+
+bool xor = (a || b) && (!a || !b)
+
+or
+
+bool xor = (!a && b) || (a && !b)
+
+xor = !eq
