@@ -1,0 +1,46 @@
+Delay:      80       30     60      50       70      10    20
+Stage: |    A    | | B | |  C  | |  D  | |   E   | | F | |r|
+
+A.  We want to insert a single register between logic blocks in such a
+    way that the difference between the sums of delays on each side
+    of the register are as close to each other as possible. We achieve
+    this by placing the register between C and D:
+
+Delay:      80       30     60    20    50       70      10   20
+Stage: |    A    | | B | |  C  | |r| |  D  | |   E   | | F | |r|
+
+    Since 80 + 30 + 60 = 170 > 130 = 50 + 70 + 10, a new instruction
+    can enter the pipeline every 170 + 20 = 190 picoseconds, giving
+    a throughput of 1 / 190 * 1000 = 5.26 GIPS. The latency is
+    2 * 190 = 380 ps.
+
+B.  We want to insert two registers so that the maximum of the three
+    stages is as small as possible. Thus, we place the registers between
+    B and C and between D and E:
+
+Delay:      80       30   20    60      50    20     70      10   20
+Stage: |    A    | | B | |r| |  C  | |  D  | |r| |   E   | | F | |r|
+
+    The maximum of the stages is now 80 + 30 = 110 (= 60 + 50) ps, so
+    the throughput is 1 / 130 * 1000 = 7.69 GIPS. The latency is
+    3 * 130 = 390 ps.
+
+C. We can place three pipeline registers optimally as follows:
+    
+Delay:      80      20   30     60    20    50    20     70      10   20
+Stage: |    A    | |r| | B | |  C  | |r| |  D  | |r| |   E   | | F | |r|
+
+    The maximum stage is now 30 + 60 = 90 ps, so we get a throughput of
+    1 / 110 * 1000 = 9.09 GIPS, and a delay of 4 * 110 = 440 ps.
+
+D.  A single stage cannot take less than 80 ps, since the first logic
+    block alone take this time. Thus, we place as few pipeline registers
+    as possible so that each stage takes at most 80 ps. Since blocks E
+    and F together atke 80 ps, we may combine them, but we separate all
+    other logic blocks, yielding the following design:
+
+Delay:      80      20   30   20    60    20    50    20     70      10   20
+Stage: |    A    | |r| | B | |r| |  C  | |r| |  D  | |r| |   E   | | F | |r|
+
+    This gives a throughput of 1 / 100 * 1000 = 10 GIPS, and a latency of
+    5 * 100 = 500 ps. 
