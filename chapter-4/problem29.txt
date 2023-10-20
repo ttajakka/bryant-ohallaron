@@ -1,0 +1,5 @@
+A.  The latency is k * (300/k) + 20 * k = 300 + 20k ps. 
+
+    The throughput is 1000/(300/k + 20) GIPS.
+
+B. lim_{k -> oo} 1000/(300/k + 20) = 50 GIPS.

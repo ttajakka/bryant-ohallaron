@@ -1,0 +1,2 @@
+Since the resulting value in %rsp should be the value read from memory,
+write port M should have higher priority.
