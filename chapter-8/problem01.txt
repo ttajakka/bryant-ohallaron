@@ -1,0 +1,21 @@
+Process     Start time    End time
+----------------------------------
+    A           1           3
+    B           2           5
+    C           4           6
+
+
+Diagram:
+
+1   A 
+2   A   B
+3   A   B
+4       B   C
+5       B   C
+6           C
+
+Process pair    Concurrent?
+---------------------------
+  AB              Y
+  AC              N
+  BC              Y
